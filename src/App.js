@@ -14,7 +14,7 @@ const App = () => {
 
   // const fetchUsers = async () => {
   //   try {
-  //     const response = await axios.get('https://activant-2-backend-1.onrender.com');
+  //     const response = await axios.get('https://activant-2-backend-1.onrender.com/api/users');
   //     setUsers(response.data);
   //   } catch (error) {
   //     console.error('Error fetching users', error);
@@ -25,7 +25,7 @@ const App = () => {
  
   const fetchUsers = async (page = 1) => {
     try {
-      const response = await axios.get('https://activant-2-backend-1.onrender.com', {
+      const response = await axios.get('https://activant-2-backend-1.onrender.com/api/users', {
         params: { page, limit: 5 }  
       });
   
@@ -51,7 +51,7 @@ const App = () => {
   //   e.preventDefault();
 
   //   try {
-  //     const response = await axios.post('https://activant-2-backend-1.onrender.com', {
+  //     const response = await axios.post('https://activant-2-backend-1.onrender.com/api/users', {
   //       name,
   //       email,
   //       address,
@@ -71,7 +71,7 @@ const App = () => {
     if (editingUser) {
       // Update existing user
       try {
-        const response = await axios.put(`https://activant-2-backend-1.onrender.com/${editingUser._id}`, {
+        const response = await axios.put(`https://activant-2-backend-1.onrender.com/api/users/${editingUser._id}`, {
           name,
           email,
           address,
@@ -89,7 +89,7 @@ const App = () => {
     } else {
       // Add new user
       try {
-        const response = await axios.post('https://activant-2-backend-1.onrender.com', {
+        const response = await axios.post('https://activant-2-backend-1.onrender.com/api/users', {
           name,
           email,
           address,
@@ -109,7 +109,7 @@ const App = () => {
 
   const handleDelete = async (userId) => {
     try{
-      await axios.delete(`https://activant-2-backend-1.onrender.com/${userId}`)
+      await axios.delete(`https://activant-2-backend-1.onrender.com/api/users/${userId}`)
       setUsers(users.filter(user => user._id !== userId))
     } catch (error) {
       console.error('Error deleting user', error)
