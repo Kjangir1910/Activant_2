@@ -18,7 +18,7 @@ const Register = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post('https://activant-2-backend-1.onrender.com/api/users/api/users/register', {
+            const response = await axios.post('https://activant-2-backend-1.onrender.com/api/users/register', {
                 name, 
                 email,
                 address, 
