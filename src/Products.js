@@ -102,7 +102,7 @@ const Products = () => {
   };
 
   const handleLogout = () => {
-navigate('/login')
+navigate('/')
   }
 
   return (
