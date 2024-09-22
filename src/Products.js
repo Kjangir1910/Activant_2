@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
-
+import { useNavigate } from 'react-router-dom';
 const Products = () => {
   const [productName, setProductName] = useState('');
   const [productId, setProductId] = useState('');
@@ -11,6 +11,7 @@ const Products = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [editingProduct, setEditingProduct] = useState(null);
   const [loading, setLoading] = useState(false); 
+  const navigate = useNavigate();
   
   // Fetch products with pagination
   const fetchProducts = async (page = 1) => {
@@ -100,9 +101,16 @@ const Products = () => {
     setEditingProduct(product);
   };
 
+  const handleLogout = () => {
+navigate('/login')
+  }
+
   return (
     <div>
-      <h1>{editingProduct ? 'Edit Product' : 'Add Product'}</h1>
+        <div className="header">
+        <h1>{editingProduct ? 'Edit Product' : 'Add Product'}</h1>
+        <button onClick={handleLogout} className="logout-btn">Logout</button>
+      </div>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Product Name:</label>
