@@ -17,7 +17,7 @@ const Products = () => {
   const fetchProducts = async (page = 1) => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/api/products', {
+      const response = await axios.get('https://activant-2.onrender.com/api/products', {
         params: { page, limit: 5 }
       });
 
@@ -42,7 +42,7 @@ const Products = () => {
     if (editingProduct) {
       // Update existing product
       try {
-        const response = await axios.put(`http://localhost:5000/api/products/${editingProduct._id}`, {
+        const response = await axios.put(`https://activant-2.onrender.com/api/products/${editingProduct._id}`, {
           productName,
           productId,
           description,
@@ -61,7 +61,7 @@ const Products = () => {
     } else {
       // Add new product
       try {
-        const response = await axios.post('http://localhost:5000/api/products', {
+        const response = await axios.post('https://activant-2.onrender.com/api/products', {
           productName,
           productId,
           description,
@@ -85,7 +85,7 @@ const Products = () => {
     
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:5000/api/products/${productId}`);
+        await axios.delete(`https://activant-2.onrender.com/api/products/${productId}`);
         setProducts(products.filter(product => product._id !== productId));
       } catch (error) {
         console.error('Error deleting product', error);
