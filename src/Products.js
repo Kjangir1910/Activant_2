@@ -16,10 +16,16 @@ const Products = () => {
   // Fetch products with pagination
   const fetchProducts = async (page = 1) => {
     setLoading(true);
-    try {
-      const response = await axios.get('https://activant-2-backend-1.onrender.com/api/products', {
-        params: { page, limit: 5 }
-      });
+    // try {
+    //   const response = await axios.get('https://activant-2-backend-1.onrender.com/api/products', {
+    //     params: { page, limit: 5 }
+    //   });
+     try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/products?page=${page}&limit=5`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch products');
+      }
+      const data = await response.json();
 
       setProducts(response.data.products);
       setTotalPages(response.data.totalPages);
