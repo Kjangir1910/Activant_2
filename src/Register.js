@@ -13,27 +13,42 @@ const Register = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate()
 
+   
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-
+    
         try {
             const response = await axios.post('https://activant-2-backend-1.onrender.com/api/users/register', {
                 name, 
                 email,
                 address, 
                 password
-            })
-            setMessage('Registration successful')
-            navigate('/products');
-        } catch (error) {
-            setMessage('Error registering user')
-            console.error('Registration error', error)
-        }
-        setLoading(false);
-    }
+            });
     
-
+            console.log('Registration Response:', response.data);  
+    
+            if (response.data && response.data.user) {
+                const { user } = response.data;  
+                localStorage.setItem('userId', user._id); 
+                
+                setMessage('Registration successful');
+                setTimeout(() => {
+                    navigate('/products');
+                }, 1000);
+            } else {
+                setMessage('Error during registration. Try again.');
+            }
+        } catch (error) {
+            setMessage('Error registering user');
+            console.error('Registration error', error);
+        }
+    
+        setLoading(false);
+    };
+    
     return (
         <>
         <div className="auth-container">
@@ -67,7 +82,8 @@ const Register = () => {
                 required
                />
 
-               <button type="submit" disabled={loading}>{loading ? <div className="loader"></div> : 'Register'}</button>
+               <button type="submit" disabled={loading}>Register</button>
+               {loading && <div className="loader">Loading...</div>}
                {message && <p>{message}</p>}
             </form>
         </div>
