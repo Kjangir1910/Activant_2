@@ -12,13 +12,15 @@ const Products = () => {
   const [editingProduct, setEditingProduct] = useState(null);
   const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
+  const [message, setMessage]  = useState('')
   
   // Fetch products with pagination
   const fetchProducts = async (page = 1) => {
     setLoading(true);
+    const userId = localStorage.getItem('userId')
     try {
       const response = await axios.get('https://activant-2-backend-1.onrender.com/api/products', {
-        params: { page, limit: 5 }
+        params: { page, limit: 5, userId }
       });
    
 
@@ -40,6 +42,14 @@ const Products = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true); 
+    const userId = localStorage.getItem('userId')
+
+    if(!userId) {
+        setMessage('User is not logged in')
+    }
+
+    // const productData = {productName, productId, description, userId}
+
     if (editingProduct) {
       // Update existing product
       try {
@@ -66,6 +76,8 @@ const Products = () => {
           productName,
           productId,
           description,
+          userId
+
         });
 
         setProducts([...products, response.data]);
@@ -103,6 +115,7 @@ const Products = () => {
   };
 
   const handleLogout = () => {
+    localStorage.removeItem('userId');
 navigate('/')
   }
 
