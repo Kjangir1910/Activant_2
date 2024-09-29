@@ -18,6 +18,8 @@ const handleSubmit = async (e) => {
             email, 
             password,
         })
+        const {user} = response.data
+        localStorage.setItem('userId', user._id)
         setMessage('Login successful')
         navigate('/products');
     } catch (error) {
@@ -43,7 +45,9 @@ const handleSubmit = async (e) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             />
-            <button type="submit" disabled={loading}>{loading ? <div className="loader"></div> : 'Login'}</button>
+            <button type="submit" disabled={loading}>Login</button>
+            {loading && <div className="loader">Loading...</div>}
+
             {message && <p>{message}</p>}
         </form>
         <p>
