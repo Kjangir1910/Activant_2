@@ -1,195 +1,282 @@
+/* General Styles */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ff6a00, #ee0979);
+  min-height: 100vh;
   margin: 0;
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  transition: background 1s ease-in-out;
+  animation: backgroundAnimation 6s infinite alternate;
+  color: #fff;
 }
 
-.container {
-  max-width: 800px;
-  margin: 50px auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+@keyframes backgroundAnimation {
+  0% {
+    background: linear-gradient(135deg, #ff6a00, #ee0979);
+  }
+  100% {
+    background: linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b);
+  }
 }
 
-h1 {
-  text-align: center;
-  color: #333;
+/* Container for the form and table */
+.products-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 1.5s ease-in-out;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form Styles */
 form {
   display: flex;
   flex-direction: column;
+  gap: 25px;
+  padding-bottom: 30px;
+  width: 100%;
+  flex-grow: 1; 
+  animation: slideInLeft 1.2s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 form div {
-  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-label {
-  font-weight: bold;
-  margin-bottom: 5px;
-  display: block;
+form div label {
+  font-size: 1.5rem;
+  color: #f0f0f0;
 }
 
-input[type="text"],
-input[type="email"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-button[type="submit"] {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
-h2 {
-  margin-top: 40px;
-  text-align: center;
+form input {
+  padding: 14px;
+  border-radius: 8px;
+  border: 2px solid #feb47b;
+  font-size: 1.2rem;
+  background-color: #fff;
   color: #333;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+form input:focus {
+  border-color: #6a82fb;
+  box-shadow: 0 8px 25px rgba(106, 130, 251, 0.4);
 }
 
-table, th, td {
-  border: 1px solid #ddd;
-}
-
-th, td {
-  padding: 12px;
-  text-align: left;
-}
-
-th {
-  background-color: #f2f2f2;
-  font-weight: bold;
-}
-
-tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-tr:hover {
-  background-color: #f1f1f1;
-}
-
-.edit-btn, .delete-btn {
-  margin-right: 5px;
-  padding: 5px 10px;
+button {
+  padding: 14px 25px;
   border: none;
+  background: #ee0979;
   color: white;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 1.1rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 8px 15px rgba(238, 9, 121, 0.4);
 }
 
-.edit-btn {
-  background-color: #4CAF50; 
+button:hover {
+  background: #ff6a00;
+  transform: scale(1.05);
 }
 
-.delete-btn {
-  background-color: #f44336; 
-}
-.delete-btn:hover {
-  background-color: #cc0000;
-}
-
-.loader {
-  border: 8px solid #f3f3f3; 
-  border-top: 8px solid #3498db; 
-  border-radius: 50%;
-  width: 40px; 
-  height: 40px; 
-  animation: spin 1s linear infinite;
-  margin: 20px auto; 
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.auth-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px;
-}
-
-.auth-container form {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  margin-bottom: 20px;
-}
-
-.auth-container input {
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.auth-container button {
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.auth-container button:hover {
-  background-color: #0056b3;
-}
-
-.auth-container p {
-  margin: 10px 0;
-}
-
-.auth-container p a {
-  color: #007bff; 
-  text-decoration: none; 
-  font-weight: bold; 
-}
-
-.auth-container p a:hover {
-  text-decoration: underline; 
-}
-
-.header {
-  display: flex;
-  justify-content: space-between; /* Aligns items to the edges */
-  align-items: center; /* Vertically centers items */
-  margin-bottom: 20px; /* Adds space below the header */
-}
-
+/* Extreme Button Animations */
 .logout-btn {
-  background-color: #f44336; /* Red background */
-  color: white; /* White text */
-  padding: 10px 15px; /* Padding */
-  border: none; /* No border */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor */
+  background: #c31432;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 10px 20px rgba(195, 20, 50, 0.5);
+  transition: all 0.3s ease-in-out;
+  animation: glow 1s infinite alternate;
 }
 
 .logout-btn:hover {
-  background-color: #d32f2f; /* Darker red on hover */
+  background: #240b36;
+  box-shadow: 0 15px 30px rgba(195, 20, 50, 0.7);
+  transform: translateY(-3px);
 }
 
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px rgba(195, 20, 50, 0.5);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(195, 20, 50, 0.9);
+  }
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+  flex-grow: 1; 
+  animation: slideInRight 1.2s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+table th, table td {
+  padding: 18px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+table th {
+  background: #3a1c71;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+table tr:hover {
+  background: rgba(0, 0, 0, 0.1);
+  transform: scale(1.01);
+}
+
+.edit-btn, .delete-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.edit-btn {
+  background: #36d1dc;
+  box-shadow: 0 10px 20px rgba(54, 209, 220, 0.4);
+}
+
+.delete-btn {
+  background: #ff416c;
+  box-shadow: 0 10px 20px rgba(255, 65, 108, 0.4);
+}
+
+.edit-btn:hover {
+  transform: scale(1.1);
+  background: #00c6ff;
+  box-shadow: 0 15px 30px rgba(0, 198, 255, 0.7);
+}
+
+.delete-btn:hover {
+  transform: scale(1.1);
+  background: #ff4b2b;
+  box-shadow: 0 15px 30px rgba(255, 75, 43, 0.7);
+}
+
+/* Header (Products Page) */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  color: #fff;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.logout-btn:hover {
+  background: #ff4b2b;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.pagination button {
+  background: #ff6a00;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.pagination button:hover {
+  background: #fc5c7d;
+  transform: scale(1.1);
+}
+
+.pagination span {
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Ensure full-page layout */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.products-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+form {
+  flex-grow: 1; 
+}
+
+table {
+  flex-grow: 1; 
+}
